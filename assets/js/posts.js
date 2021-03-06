@@ -1,7 +1,7 @@
 const posts = [
     {
-        title: 'Stallmam',
-        preview: 'is cool',
+        title: 'Stallman',
+        preview: ')))',
         content: 'Lorem',
         thumbnail: '/memes/stallman-meme.png',
     },
