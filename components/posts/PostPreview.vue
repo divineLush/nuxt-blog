@@ -32,6 +32,15 @@ export default {
 </script>
 
 <style>
+.post-preview {
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.post-preview:hover {
+  opacity: .4;
+}
+
 .post-preview__post-preview {
   width: 90%;
 }

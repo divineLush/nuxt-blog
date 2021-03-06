@@ -22,7 +22,7 @@ export default {
     mounted() {
         setInterval(() => {
             this.isTransparent = !this.isTransparent;
-        }, 5000);
+        }, 4000);
     },
 
     computed: {
@@ -41,8 +41,8 @@ export default {
 
 <style>
 .the-header {
-    font-size: 1.6rem;
-    padding: 15px;
+    font-size: 1.4rem;
+    padding: 20px;
 }
 
 .the-header__title {
@@ -50,7 +50,7 @@ export default {
 }
 
 .the-header__title._transparent {
-    opacity: 0.3;
+    opacity: .5;
 }
 
 .the-header__title._solid {

@@ -1,6 +1,7 @@
 :root {
     --color-background: #1b1e20;
-    --color-primary: #39ff14;
+    --color-primary: #84de02;
+    /* --color-primary: #39ff14; */
 }
   
 *,
@@ -16,8 +17,8 @@ html {
   
 body {
     margin: 0;
-    background-color: var(--color-background);
-    color: var(--color-primary);
+    background-color: var(--color-background, #1b1e20);
+    color: var(--color-primary, #84de02);
 }
   
 a {

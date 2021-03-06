@@ -1,13 +1,15 @@
 <template>
     <section class="posts-page">
-
+        <PostList />
     </section>
 </template>
 
-<style>
-.posts-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+<script>
+import PostList from '~/components/posts/PostList.vue';
+
+export default {
+    components: {
+        PostList,
+    },
 }
-</style>
+</script>
