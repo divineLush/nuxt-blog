@@ -1,0 +1,26 @@
+:root {
+    --color-background: #1b1e20;
+    --color-primary: #39ff14;
+}
+  
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+  
+html {
+    font-family: 'Cutive Mono', monospace;
+    font-size: 1.4rem;
+}
+  
+body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-primary);
+}
+  
+a {
+    color: inherit;
+}
+  
