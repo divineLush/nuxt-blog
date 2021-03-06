@@ -15,14 +15,15 @@ export default {
 
     data() {
         return {
-            isTransparent: false,
+            isTransparent: true,
         }
     },
 
     mounted() {
+        this.toggleTransparency();
         setInterval(() => {
-            this.isTransparent = !this.isTransparent;
-        }, 4000);
+            this.toggleTransparency();
+        }, 3000);
     },
 
     computed: {
@@ -35,7 +36,13 @@ export default {
                 }
             ];
         }
-    }
+    },
+
+    methods: {
+        toggleTransparency() {
+            this.isTransparent = !this.isTransparent;
+        }
+    },
 }
 </script>
 
@@ -46,11 +53,11 @@ export default {
 }
 
 .the-header__title {
-    transition: opacity 1s ease;
+    transition: opacity 3s ease;
 }
 
 .the-header__title._transparent {
-    opacity: .5;
+    opacity: .3;
 }
 
 .the-header__title._solid {
