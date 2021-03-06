@@ -3,8 +3,8 @@
         <article class="post-preview__wrapper">
             <div class="post-preview__post-thumbnail" :style="backgroundImage"></div>
             <div class="post-preview__post-content">
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.preview }}</p>
+              <h2>{{ post.title }}</h2>
+              <p>{{ post.preview }}</p>
             </div>
         </article>
     </nuxt-link>
@@ -23,7 +23,7 @@ export default {
 
     computed: {
         backgroundImage() {
-            const backgroundImage = `url('${this.post.thumbnail}')`;
+            const backgroundImage = `url('${this.post.thumbnailLink}')`;
 
             return { backgroundImage }
         }
@@ -35,6 +35,8 @@ export default {
 .post-preview {
   opacity: 1;
   transition: opacity 1s ease;
+  text-align: center;
+  text-decoration: none;
 }
 
 .post-preview:hover {
@@ -58,16 +60,9 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* background-image: url('~/static/memes/stallman-meme.png'); */
 }
 
 .post-preview__post-content {
   padding: 10px;
-  text-align: center;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
 }
 </style>

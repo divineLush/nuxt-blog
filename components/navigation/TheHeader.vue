@@ -42,7 +42,7 @@ export default {
 <style>
 .the-header {
     font-size: 1.4rem;
-    padding: 20px;
+    margin-bottom: 30px;
 }
 
 .the-header__title {

@@ -1,6 +1,6 @@
 :root {
     --color-background: #1b1e20;
-    --color-primary: #84de02;
+    --color-primary: #fcfcfc;
     /* --color-primary: #39ff14; */
 }
   
@@ -13,12 +13,13 @@
 html {
     font-family: 'Cutive Mono', monospace;
     font-size: 1.4rem;
+    padding: 25px;
 }
   
 body {
     margin: 0;
     background-color: var(--color-background, #1b1e20);
-    color: var(--color-primary, #84de02);
+    color: var(--color-primary, #fcfcfc);
 }
   
 a {

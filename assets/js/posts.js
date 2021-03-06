@@ -3,31 +3,31 @@ const posts = [
         title: 'Stallman',
         preview: ')))',
         content: 'Lorem',
-        thumbnail: '/memes/stallman-meme.png',
+        thumbnailLink: '/memes/stallman-meme.png',
     },
     {
         title: 'Title',
         preview: 'Preview text',
         content: 'Lorem',
-        thumbnail: 'memes/de.png',
+        thumbnailLink: 'memes/de.png',
     },
     {
         title: 'Title',
         preview: 'Preview text',
         content: 'Lorem',
-        thumbnail: 'memes/gentoo.png',
+        thumbnailLink: 'memes/gentoo.png',
     },
     {
         title: 'Title',
         preview: 'Preview text',
         content: 'Lorem',
-        thumbnail: 'memes/distro.png',
+        thumbnailLink: 'memes/distro.png',
     },
     {
         title: 'Title',
         preview: 'Preview text',
         content: 'Lorem',
-        thumbnail: 'memes/ubuntu.png',
+        thumbnailLink: 'memes/ubuntu.png',
     },
 ];
 
