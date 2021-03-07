@@ -47,10 +47,18 @@ export default {
 }
 
 .ui-input__input {
-    background-color: inherit;
+    margin-top: 4px;
+    padding: 4px 8px;
+    background-color: var(--color-background);
     border: 2px solid var(--color-primary);
-    color: inherit;
+    color: var(--color-primary);
     font-family: inherit;
     font-size: inherit;
+    transition: all .3s ease;
+}
+
+.ui-input__input:focus {
+    background-color: var(--color-primary);
+    color: var(--color-background);
 }
 </style>

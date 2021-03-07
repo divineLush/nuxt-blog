@@ -1,9 +1,11 @@
 <template>
     <div class="post-list">
+        <!-- camelCase properties such as isAdmin should be bound as kebab-case -->
         <PostPreview
             v-for="(post, key) in posts"
             :key="key"
             :post="post"
+            :is-admin="isAdmin"
             class="post-list__post"
         />
     </div>
@@ -18,6 +20,13 @@ export default {
 
     components: {
         PostPreview,
+    },
+
+    props: {
+        isAdmin: {
+            type: Boolean,
+            default: false,
+        },
     },
 
     computed: {

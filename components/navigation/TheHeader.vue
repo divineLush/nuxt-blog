@@ -4,6 +4,7 @@
         <nav class="the-header__nav">
             <nuxt-link class="the-header__link" to="/">Home</nuxt-link>
             <nuxt-link class="the-header__link" to="/posts">Blog</nuxt-link>
+            <nuxt-link class="the-header__link" to="/about">About</nuxt-link>
             <nuxt-link class="the-header__link" to="/admin">Admin</nuxt-link>
         </nav>
     </header>
@@ -15,7 +16,7 @@ export default {
 
     data() {
         return {
-            isTransparent: true,
+            isTransparent: false,
         }
     },
 

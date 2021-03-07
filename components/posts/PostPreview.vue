@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link class="post-preview" to="/posts/1">
+    <nuxt-link class="post-preview" :to="postLink">
         <article class="post-preview__wrapper">
             <div class="post-preview__post-thumbnail" :style="backgroundImage"></div>
             <div class="post-preview__post-content">
@@ -19,15 +19,25 @@ export default {
             type: Object,
             required: true,
         },
+        isAdmin: {
+            type: Boolean,
+            default: false,
+        },
     },
 
     computed: {
         backgroundImage() {
-            const backgroundImage = `url('${this.post.thumbnailLink}')`;
+            const thumbnailLink = this.post.thumbnailLink;
+            const backgroundImage = `url('${thumbnailLink}')`;
 
-            return { backgroundImage }
-        }
-    }
+            return thumbnailLink ? { backgroundImage } : {};
+        },
+
+        postLink() {
+            const baseUrl = this.isAdmin ? '/admin/' : '/posts/';
+            return `${baseUrl}${this.post.id}`;
+        },
+    },
 }
 </script>
 
