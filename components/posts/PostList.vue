@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import PostPreview from '~/components/posts/PostPreview.vue';
 // import posts from '~/assets/js/posts';
 
@@ -40,11 +41,15 @@ export default {
         },
     },
 
-    data() {
-        return {
-            posts: [],
-        }
-    },
+    // data() {
+    //     return {
+    //         posts: [],
+    //     }
+    // },
+
+    computed: mapGetters([
+        'posts',
+    ]),
 }
 </script>
 

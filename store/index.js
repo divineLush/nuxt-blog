@@ -18,6 +18,8 @@ const createStore = () => new Vuex.Store({
         // will be dispatched by nuxt
         // initialize store
         // nuxtServerInit(vuexContext, context)
+        // initially runs on the server
+        // then runs on the clien
         nuxtServerInit({ commit }) {
             commit('setPosts', posts);
         },
