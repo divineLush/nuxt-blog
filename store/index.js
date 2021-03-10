@@ -1,5 +1,7 @@
 import Vuex from 'vuex';
-import posts from '~/assets/js/posts';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+// import posts from '~/assets/js/posts';
 
 // gotta create a function instead of just object
 // as it should be callable by nuxt
@@ -20,8 +22,20 @@ const createStore = () => new Vuex.Store({
         // nuxtServerInit(vuexContext, context)
         // initially runs on the server
         // then runs on the clien
-        nuxtServerInit({ commit }) {
-            commit('setPosts', posts);
+        nuxtServerInit({ commit }, { error }) {
+            // commit('setPosts', posts);
+            const url = 'https://nuxt-blog-3ae83-default-rtdb.firebaseio.com/posts.json';
+            return axios.get(url)
+                .then(({ data }) => {
+                    const posts = [];
+                    for (const key in data) {
+                        const id = uuidv4();
+                        const post = { ...data[key], id };
+                        posts.push(post);
+                    }
+                    commit('setPosts', posts);
+                })
+                .catch(e => error(e));
         },
 
         setPosts(vuexContext, posts) {
