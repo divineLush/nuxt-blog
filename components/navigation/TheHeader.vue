@@ -64,16 +64,4 @@ export default {
 .the-header__title._solid {
     opacity: 1;
 }
-
-.the-header__link {
-    transition: opacity .4s ease;
-}
-
-.the-header__link:hover {
-    opacity: .5;
-}
-
-.the-header__link.nuxt-link-exact-active {
-    opacity: .5;
-}
 </style>

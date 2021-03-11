@@ -24,6 +24,11 @@ body {
   
 a {
     color: inherit;
+    transition: opacity .3s ease;
+}
+
+a:hover {
+    opacity: .5;
 }
 
 a.nuxt-link-exact-active {
