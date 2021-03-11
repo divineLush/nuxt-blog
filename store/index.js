@@ -9,11 +9,22 @@ const createStore = () => new Vuex.Store({
     state: {
         posts: [],
     },
+
     mutations: {
         setPosts(state, posts) {
             state.posts = posts;
-        }
+        },
+
+        addPost(state, post) {
+            state.posts.push(post);
+        },
+
+        editPost(state, editedPost) {
+            const postIndex = state.posts.findIndex(post => post.id === editedPost.id);
+            state.posts[postIndex] = editedPost;
+        },
     },
+
     actions: {
         // will be dispatched by nuxt
         // initialize store
@@ -36,8 +47,32 @@ const createStore = () => new Vuex.Store({
 
         setPosts(vuexContext, posts) {
             vuexContext.commit('setPosts', posts);
+        },
+
+        addPost(vuexContext, post) {
+            const url = `https://nuxt-blog-3ae83-default-rtdb.firebaseio.com/posts.json`;
+            const newPost = { ...post, updatedDate: new Date() };
+
+            return axios.post(url, newPost)
+                .then(res => {
+                    // res.data.name is an id provided by firebase
+                    const id = res.data.name;
+                    vuexContext.commit('addPost', { ...newPost, id });
+                })
+                .catch(error => console.log(error));
+        },
+
+        editPost(vuexContext, editedPost) {
+            const url = `https://nuxt-blog-3ae83-default-rtdb.firebaseio.com/posts/${editedPost.id}.json`;
+
+            return axios.put(url, editedPost)
+                .then(res => {
+                    vuexContext.commit('editPost', editedPost);
+                })
+                .catch(e => console.log(e));
         }
     },
+
     getters: {
         posts(state) {
             return state.posts;

@@ -62,6 +62,7 @@ export default {
         },
 
         cancel() {
+            this.editedPost = defaultPost;
             this.$emit('cancel');
         },
     },
