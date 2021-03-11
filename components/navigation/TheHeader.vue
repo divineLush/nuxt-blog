@@ -66,7 +66,6 @@ export default {
 }
 
 .the-header__link {
-    text-decoration: none;
     transition: opacity .4s ease;
 }
 
@@ -75,6 +74,6 @@ export default {
 }
 
 .the-header__link.nuxt-link-exact-active {
-    text-decoration: underline;
+    opacity: .5;
 }
 </style>

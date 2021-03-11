@@ -1,7 +1,5 @@
 import Vuex from 'vuex';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
-// import posts from '~/assets/js/posts';
 
 // gotta create a function instead of just object
 // as it should be callable by nuxt
@@ -28,11 +26,9 @@ const createStore = () => new Vuex.Store({
             return axios.get(url)
                 .then(({ data }) => {
                     const posts = [];
-                    for (const key in data) {
-                        const id = uuidv4();
-                        const post = { ...data[key], id };
-                        posts.push(post);
-                    }
+                    for (const key in data)
+                        posts.push({ ...data[key], id: key });
+  
                     commit('setPosts', posts);
                 })
                 .catch(e => error(e));

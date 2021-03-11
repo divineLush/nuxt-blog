@@ -1,6 +1,8 @@
 <template>
     <div class="new-post-page">
-        <PostForm @submit="onSubmit" />
+        <PostForm
+            @submit="onSubmit"
+        />
     </div>
 </template>
 
@@ -19,7 +21,8 @@ export default {
         onSubmit(post) {
             const node = 'posts';
             const url = `https://nuxt-blog-3ae83-default-rtdb.firebaseio.com/${node}.json`;
-            axios.post(url, post)
+            const updatedDate = new Date();
+            axios.post(url, { ...post, updatedDate })
                 .then(res => console.log(res))
                 .catch(error => console.log(error));
         },

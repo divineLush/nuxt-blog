@@ -1,11 +1,28 @@
 <template>
     <section class="single-post-page">
         <article class="single-post-page__post">
-            <h1 class="single-post-page__title">Title</h1>
-            <div class="single-post-page__details"></div>
+            <h2 class="single-post-page__title">{{ post.title }}</h2>
+            <h3 class="single-post-page__author">by {{ post.author }}</h3>
+            <h4 class="single-post-page__data">last updated on {{ post.updatedDate }}</h4>
+            <div class="single-post-page__content">{{ post.content }}</div>
         </article>
     </section>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  asyncData(context) {
+    const id = context.params.id;
+    const url = `https://nuxt-blog-3ae83-default-rtdb.firebaseio.com/posts/${id}.json`;
+
+    return axios.get(url)
+      .then(({ data }) => ({ post: data }))
+      .catch(e => context.error(e));
+  }
+}
+</script>
 
 <style>
 .single-post-page {
@@ -26,21 +43,6 @@
 
 .single-post-page__title {
   margin: 0;
-}
-
-.single-post-page__details {
-  padding: 10px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .single-post-page__details {
-    flex-direction: row;
-  }
 }
 
 .post-detail {

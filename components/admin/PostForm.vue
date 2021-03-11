@@ -3,6 +3,7 @@
         <UiInput class="post-form__input" v-model="editedPost.author" id="author">Author Name</UiInput>        
         <UiInput class="post-form__input" v-model="editedPost.title" id="title">Title</UiInput>                    
         <UiInput class="post-form__input" v-model="editedPost.thumbnailLink" id="thumbnail">Thumbnail Link</UiInput>
+        <UiInput class="post-form__input" v-model="editedPost.previewText" id="preview">Preview Text</UiInput>
         <UiInput
             class="post-form__input"
             control-type="textarea"
@@ -30,6 +31,7 @@ const defaultPost = {
     author: '',
     title: '',
     thumbnailLink: '',
+    previewText: '',
     content: '',
 };
 
@@ -59,7 +61,9 @@ export default {
             this.$emit('submit', this.editedPost);
         },
 
-        cancel() {},
+        cancel() {
+            this.$emit('cancel');
+        },
     },
 }
 </script>
