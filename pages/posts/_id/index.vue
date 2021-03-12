@@ -3,7 +3,7 @@
         <article class="single-post-page__post">
             <h2 class="single-post-page__title">{{ post.title }}</h2>
             <h3 class="single-post-page__author">by {{ post.author }}</h3>
-            <h4 class="single-post-page__data">last updated on {{ post.updatedDate }}</h4>
+            <h4 class="single-post-page__data">last updated on {{ post.updatedDate | date }}</h4>
             <div class="single-post-page__content">{{ post.content }}</div>
         </article>
     </section>
