@@ -33,7 +33,7 @@ const createStore = () => new Vuex.Store({
         // then runs on the clien
         nuxtServerInit({ commit }, { error }) {
             // commit('setPosts', posts);
-            const url = 'https://nuxt-blog-3ae83-default-rtdb.firebaseio.com/posts.json';
+            const url = `${process.env.baseUrl}/posts.json`;
             return axios.get(url)
                 .then(({ data }) => {
                     const posts = [];
@@ -50,7 +50,7 @@ const createStore = () => new Vuex.Store({
         },
 
         addPost(vuexContext, post) {
-            const url = `https://nuxt-blog-3ae83-default-rtdb.firebaseio.com/posts.json`;
+            const url = `${process.env.baseUrl}/posts.json`;
             const newPost = { ...post, updatedDate: new Date() };
 
             return axios.post(url, newPost)
@@ -63,7 +63,7 @@ const createStore = () => new Vuex.Store({
         },
 
         editPost(vuexContext, editedPost) {
-            const url = `https://nuxt-blog-3ae83-default-rtdb.firebaseio.com/posts/${editedPost.id}.json`;
+            const url = `${process.env.baseUrl}/posts/${editedPost.id}.json`;
 
             return axios.put(url, editedPost)
                 .then(res => {
