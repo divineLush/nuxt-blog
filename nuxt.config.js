@@ -93,7 +93,7 @@ export default {
   // srcDir: 'client-app/'
 
   // setting page transitions
-  transition: {
+  pageTransition: {
     // css class name
     name: 'fade',
     mode: 'out-in',
