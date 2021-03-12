@@ -15,7 +15,7 @@ import axios from 'axios';
 export default {
   asyncData(context) {
     const id = context.params.id;
-    const url = `${process.env.baseUrl}/posts/${id}.json`;
+    const url = `/posts/${id}.json`;
 
     return axios.get(url)
       .then(({ data }) => ({ post: data }))
