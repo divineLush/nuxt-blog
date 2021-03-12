@@ -15,16 +15,8 @@
 </template>
 
 <script>
-import UiButton from '~/components/ui/UiButton.vue';
-import UiInput from '~/components/ui/UiInput.vue';
-
 export default {
     layout: 'admin',
-
-    components: {
-        UiButton,
-        UiInput,
-    },
 
     data() {
         return {

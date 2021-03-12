@@ -24,9 +24,6 @@
 </template>
 
 <script>
-import UiButton from '~/components/ui/UiButton.vue';
-import UiInput from '~/components/ui/UiInput.vue';
-
 const defaultPost = {
     author: '',
     title: '',
@@ -37,11 +34,6 @@ const defaultPost = {
 
 export default {
     name: 'PostForm',
-
-    components: {
-        UiButton,
-        UiInput,
-    },
 
     props: {
         post: {
