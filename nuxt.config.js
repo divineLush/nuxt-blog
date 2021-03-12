@@ -86,4 +86,14 @@ export default {
       // routes.push({ path: '/', component: resolve(__dirname, 'pages/index.vue') })
   //   } 
   // },
+
+  // where are all nuxt folders
+  // srcDir: 'client-app/'
+
+  // setting page transitions
+  transition: {
+    // css class name
+    name: 'fade',
+    mode: 'out-in',
+  },
 }

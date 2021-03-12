@@ -34,4 +34,12 @@ a:hover {
 a.nuxt-link-exact-active {
     opacity: .5;
 }
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
   
