@@ -8,6 +8,7 @@ import axios from 'axios';
 const createStore = () => new Vuex.Store({
     state: {
         posts: [],
+        token: null,
     },
 
     mutations: {
@@ -22,6 +23,10 @@ const createStore = () => new Vuex.Store({
         editPost(state, editedPost) {
             const postIndex = state.posts.findIndex(post => post.id === editedPost.id);
             state.posts[postIndex] = editedPost;
+        },
+
+        setToken(state, token) {
+            state.token = token;
         },
     },
 
@@ -45,11 +50,12 @@ const createStore = () => new Vuex.Store({
                 .catch(e => error(e));
         },
 
-        setPosts(vuexContext, posts) {
-            vuexContext.commit('setPosts', posts);
+        // vuexContext, payload
+        setPosts({ commit }, posts) {
+            commit('setPosts', posts);
         },
 
-        addPost(vuexContext, post) {
+        addPost({ commit }, post) {
             const url = `${process.env.baseUrl}/posts.json`;
             const newPost = { ...post, updatedDate: new Date() };
 
@@ -57,20 +63,38 @@ const createStore = () => new Vuex.Store({
                 .then(res => {
                     // res.data.name is an id provided by firebase
                     const id = res.data.name;
-                    vuexContext.commit('addPost', { ...newPost, id });
+                    commit('addPost', { ...newPost, id });
                 })
                 .catch(error => console.log(error));
         },
 
-        editPost(vuexContext, editedPost) {
+        editPost({ commit }, editedPost) {
             const url = `${process.env.baseUrl}/posts/${editedPost.id}.json`;
 
             return axios.put(url, editedPost)
-                .then(res => {
-                    vuexContext.commit('editPost', editedPost);
+                .then(() => {
+                    commit('editPost', editedPost);
                 })
                 .catch(e => console.log(e));
-        }
+        },
+
+        authenticateUser({ commit }, { isLogin, email, password }) {
+            const payload = { email, password, returnSecureToken: true };
+
+            const signIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+            const signUp = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
+            const url = isLogin ? signIn : signUp;
+
+            return axios.post(`${url}${process.env.apiKey}`, payload)
+                .then(({ data }) => {
+                    console.log(data);
+                    commit('setToken', data.idToken);
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.errorMessage = error.message;
+                })
+        },
     },
 
     getters: {

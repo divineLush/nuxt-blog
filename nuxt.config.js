@@ -69,6 +69,7 @@ export default {
   env: {
     // baseUrl:  process.env.BASE_URL || 'https://nuxt-blog-3ae83-default-rtdb.firebaseio.com',
     baseUrl: 'https://nuxt-blog-3ae83-default-rtdb.firebaseio.com',
+    apiKey: 'AIzaSyBx6dkOmvNIcJIGJfDFxcHL8bPM3--jPCA',
   },
 
   // change the way nuxt statically generates pages
