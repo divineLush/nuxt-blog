@@ -1,5 +1,11 @@
 import Vuex from 'vuex';
 import axios from 'axios';
+import Cookie from 'js-cookie';
+
+const dataTypes = {
+    TOKEN: 'token',
+    EXPIRATION_DATE: 'tokenExpirationDate',
+};
 
 // gotta create a function instead of just object
 // as it should be callable by nuxt
@@ -91,9 +97,17 @@ const createStore = () => new Vuex.Store({
 
             return axios.post(`${url}${process.env.apiKey}`, payload)
                 .then(({ data }) => {
-                    console.log(data);
-                    commit('setToken', data.idToken);
-                    dispatch('setLogoutTimer', data.expiresIn * 1000);
+                    const token = data.idToken
+                    commit('setToken', token);
+                    localStorage.setItem(dataTypes.TOKEN, token);
+
+                    const expiresIn = Number.parseInt(data.expiresIn) * 1000;
+                    // timestamp in the future when token expires
+                    const tokenExpirationDate = new Date().getTime() + expiresIn; 
+                    localStorage.setItem(dataTypes.EXPIRATION_DATE, tokenExpirationDate);
+
+                    Cookie.set(dataTypes.TOKEN, token);
+                    Cookie.set(dataTypes.EXPIRATION_DATE, tokenExpirationDate);
                 })
                 .catch(error => {
                     console.log(error);
@@ -101,11 +115,42 @@ const createStore = () => new Vuex.Store({
                 })
         },
 
-        setLogoutTimer({ commit }, duration) {
-            setTimeout(() => {
+        initAuth({ commit, dispatch }, request) {
+            let token;
+            let expirationDate;
+            // if code runs on the server
+            // request is a node/express request object
+            if (request) {
+                // check if there is a cookie
+                if (!request.headers.cookie) return;
+
+                const extractFromCookie = name => request.headers.cookie
+                    .split(';')
+                    .find(c => c.trim().startsWith(`${name}=`));
+
+                const tokenCookie = extractFromCookie(dataTypes.TOKEN);
+
+                if (!tokenCookie) return;
+                
+                const getValue = cookie => cookie.split('=')[1];
+
+                token = getValue(tokenCookie);
+                expirationDate = getValue(extractFromCookie(dataTypes.EXPIRATION_DATE));
+            } else {
+                // persisting token in localStorage
+                token = localStorage.getItem(dataTypes.TOKEN);
+                expirationDate = localStorage.getItem(dataTypes.EXPIRATION_DATE);
+            }
+
+            // if the date is expired or there is no token
+            if (new Date().getTime() > +expirationDate || !token) {
                 commit('clearToken');
-            }, duration);
-        },
+                return;
+            }
+
+            // remaining time
+            commit('setToken', token);            
+        }
     },
 
     getters: {

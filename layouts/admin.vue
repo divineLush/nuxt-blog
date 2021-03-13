@@ -14,7 +14,8 @@
 
 <script>
 export default {
-    middleware: 'auth',
+    // order matters
+    middleware: ['checkAuth', 'auth'],
 }
 </script>
 

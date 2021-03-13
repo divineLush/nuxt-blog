@@ -1,6 +1,7 @@
 <template>
     <header class="the-header">
         <h1 :class="titleClass">Get the latest tech news!</h1>
+        <span v-if="isAuth">logged in</span>
         <nav class="the-header__nav">
             <nuxt-link class="the-header__link" to="/">Home</nuxt-link>
             <nuxt-link class="the-header__link" to="/posts">Blog</nuxt-link>
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: 'TheHeader',
 
@@ -28,6 +31,10 @@ export default {
     },
 
     computed: {
+        ...mapGetters({
+            isAuth: 'isAuth',
+        }),
+
         titleClass() {
             return [
                 'the-header__title',
