@@ -13,8 +13,14 @@
         >
             Content
         </UiInput>                    
-        <UiButton type="submit">Save</UiButton>                    
         <UiButton
+            class="post-form__btn"
+            type="submit"
+        >
+            Save
+        </UiButton>                    
+        <UiButton
+            class="post-form__btn"
             type="button"
             @click="cancel"
         >
@@ -68,5 +74,9 @@ export default {
 
 .post-form__input {
     margin: 10px 0;
+}
+
+.post-form__btn {
+    margin: 16px 0;
 }
 </style>

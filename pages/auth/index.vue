@@ -1,6 +1,6 @@
 <template>
     <div class="admin-auth-page">
-        <h2>{{ submitBtnText }}</h2>
+        <h2 class="admin-auth-page__title">{{ submitBtnText }}</h2>
         <form class="admin-auth-page__form" @submit.prevent="submit">
             <UiInput
                 class="admin-auth-page__input"
@@ -18,8 +18,14 @@
             >
                 Password
             </UiInput>                    
-            <UiButton type="submit">{{ submitBtnText }}</UiButton>                    
             <UiButton
+                class="admin-auth-page__btn"
+                type="submit"
+            >
+                {{ submitBtnText }}
+            </UiButton>
+            <UiButton
+                class="admin-auth-page__btn"
                 type="button"
                 @click="switchForm"
             >
@@ -75,11 +81,20 @@ export default {
 </script>
 
 <style>
+.admin-auth-page__title {
+    text-align: center;
+}
+
 .admin-auth-page__form {
-    max-width: 40%;
+    max-width: 50%;
+    margin: 0 auto;
 }
 
 .admin-auth-page__input {
     margin: 8px 0;
+}
+
+.admin-auth-page__btn {
+    margin: 16px 0;
 }
 </style>
