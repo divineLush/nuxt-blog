@@ -4,7 +4,8 @@
 // could be added to all routes in nuxt.config (router: { middleware: 'log' })
 
 export default function (context) {
-    console.log('middleware', context)
+    if (!context.store.getters.isAuth)
+        context.redirect('/auth');
     // if you run async code here, return a promise
     // if you run sync code, you don't have to return anything
 };

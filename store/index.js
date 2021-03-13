@@ -28,6 +28,10 @@ const createStore = () => new Vuex.Store({
         setToken(state, token) {
             state.token = token;
         },
+
+        clearToken(state) {
+            state.token = null;
+        },
     },
 
     actions: {
@@ -68,8 +72,8 @@ const createStore = () => new Vuex.Store({
                 .catch(error => console.log(error));
         },
 
-        editPost({ commit }, editedPost) {
-            const url = `${process.env.baseUrl}/posts/${editedPost.id}.json`;
+        editPost({ commit, state }, editedPost) {
+            const url = `${process.env.baseUrl}/posts/${editedPost.id}.json?auth=${state.token}`;
 
             return axios.put(url, editedPost)
                 .then(() => {
@@ -78,7 +82,7 @@ const createStore = () => new Vuex.Store({
                 .catch(e => console.log(e));
         },
 
-        authenticateUser({ commit }, { isLogin, email, password }) {
+        authenticateUser({ commit, dispatch }, { isLogin, email, password }) {
             const payload = { email, password, returnSecureToken: true };
 
             const signIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
@@ -89,11 +93,18 @@ const createStore = () => new Vuex.Store({
                 .then(({ data }) => {
                     console.log(data);
                     commit('setToken', data.idToken);
+                    dispatch('setLogoutTimer', data.expiresIn * 1000);
                 })
                 .catch(error => {
                     console.log(error);
                     this.errorMessage = error.message;
                 })
+        },
+
+        setLogoutTimer({ commit }, duration) {
+            setTimeout(() => {
+                commit('clearToken');
+            }, duration);
         },
     },
 
@@ -101,6 +112,10 @@ const createStore = () => new Vuex.Store({
         posts(state) {
             return state.posts;
         },
+
+        isAuth(state) {
+            return state.token !== null;
+        }
     },
 });
 
