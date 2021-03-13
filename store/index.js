@@ -144,13 +144,23 @@ const createStore = () => new Vuex.Store({
 
             // if the date is expired or there is no token
             if (new Date().getTime() > +expirationDate || !token) {
-                commit('clearToken');
+                dispatch('logout');
                 return;
             }
 
             // remaining time
             commit('setToken', token);            
-        }
+        },
+
+        logout({ commit }) {
+            commit('clearToken');
+            Cookie.remove(dataTypes.TOKEN);
+            Cookie.remove(dataTypes.EXPIRATION_DATE);
+            if (process.client) {
+                localStorage.removeItem(dataTypes.TOKEN);
+                localStorage.removeItem(dataTypes.EXPIRATION_DATE);
+            }
+        },
     },
 
     getters: {

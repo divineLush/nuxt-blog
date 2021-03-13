@@ -1,6 +1,7 @@
 <template>
     <div class="new-post-page">
         <PostForm
+            class="new-post-page__form"
             @submit="onSubmit"
             @cancel="$router.push('/admin')"
         />
@@ -25,3 +26,9 @@ export default {
     },
 }
 </script>
+
+<style>
+.new-post-page__form {
+    margin: 0 auto;
+}
+</style>

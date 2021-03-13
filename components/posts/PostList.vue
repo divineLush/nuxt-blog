@@ -1,18 +1,16 @@
 <template>
     <div class="post-list">
-        <!-- camelCase properties such as isAdmin should be bound as kebab-case -->
         <PostPreview
             v-for="(post, key) in posts"
             :key="key"
             :post="post"
-            :is-admin="isAdmin"
             class="post-list__post"
         />
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 import PostPreview from '~/components/posts/PostPreview.vue';
 
 export default {
@@ -32,13 +30,6 @@ export default {
     //     console.log(context);
     //     this.posts = loadedPosts;
     // },
-
-    props: {
-        isAdmin: {
-            type: Boolean,
-            default: false,
-        },
-    },
 
     // data() {
     //     return {

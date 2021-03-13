@@ -63,7 +63,7 @@ export default {
 
 <style>
 .post-form {
-    max-width: 40%;
+    max-width: 60%;
 }
 
 .post-form__input {

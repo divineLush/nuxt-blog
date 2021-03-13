@@ -1,11 +1,10 @@
 <template>
     <div class="admin-post-page">
-        <section class="admin-post-page__form">
-            <PostForm
-                :post="post"
-                @submit="onSubmit"
-            />
-        </section>
+        <PostForm
+            class="admin-post-page__form"
+            :post="post"
+            @submit="onSubmit"
+        />
     </div>
 </template>
 
@@ -37,3 +36,9 @@ export default {
     },
 }
 </script>
+
+<style>
+.admin-post-page__form {
+    margin: 0 auto;
+}
+</style>

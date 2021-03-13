@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: 'PostPreview',
 
@@ -19,13 +21,13 @@ export default {
             type: Object,
             required: true,
         },
-        isAdmin: {
-            type: Boolean,
-            default: false,
-        },
     },
 
     computed: {
+        ...mapGetters({
+            isAuth: 'isAuth',
+        }),
+
         backgroundImage() {
             const thumbnailLink = this.post.thumbnailLink;
             const backgroundImage = `url('${thumbnailLink}')`;
@@ -34,7 +36,7 @@ export default {
         },
 
         postLink() {
-            const baseUrl = this.isAdmin ? '/admin/' : '/posts/';
+            const baseUrl = this.isAuth ? '/admin/' : '/posts/';
             return `${baseUrl}${this.post.id}`;
         },
     },

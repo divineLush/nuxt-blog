@@ -11,6 +11,8 @@
 import TheHeader from '~/components/navigation/TheHeader.vue';
 
 export default {
+  middleware: 'checkAuth',
+
   components: {
     TheHeader,
   }
